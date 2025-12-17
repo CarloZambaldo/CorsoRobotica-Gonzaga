@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-LiquidCrystal_I2C lcd(0x3F, 20, 4);
+LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
 String nomi[] = {"Davide", "Donato", "Nicolas", "Sveva", "Lidia", "Claudia", "Federico", "Lorenzo", "Francesco"};
 String complimenti[] = {"sei forte!", "grande!", "ottimo lavoro!", "ben fatto!", "continua cosi!", "wow!", "super!", "sei un mito!", "top! :)"};

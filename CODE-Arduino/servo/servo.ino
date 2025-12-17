@@ -8,7 +8,7 @@ void setup() {
 
 void loop() {
 //Imposto la posizione a cui si deve spostare
-  Servo1.write(-180);  
+  Servo1.write(0);  
   delay (2000);
   Servo1.write(90);
   delay (2000);
