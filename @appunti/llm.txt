@@ -1,0 +1,71 @@
+installare nginx
+sudo apt update
+sudo apt install nginx -y
+
+
+
+pip install fastapi uvicorn
+
+
+Crea un file di configurazione: sudo nano /etc/nginx/sites-available/gpt_proxy
+
+Inserisci questa logica:
+
+
+server {
+    listen 80;
+    server_name raspberrypi.local;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000; # L'indirizzo del tuo script Python
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_read_timeout 300; # Fondamentale per i tempi lunghi dei GPT
+    }
+}
+
+
+Attiva la configurazione e riavvia:
+sudo ln -s /etc/nginx/sites-available/gpt_proxy /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
+
+
+
+import streamlit as st
+import ollama
+
+st.set_page_config(page_title="Raspberry Pi Local GPT", page_icon="🤖")
+
+st.title("🤖 RPi Local GPT")
+st.markdown("Interfaccia gestita da **Nginx** e **Streamlit**")
+
+# Inizializza la cronologia della chat
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Visualizza i messaggi precedenti
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Input dell'utente
+if prompt := st.chat_input("Chiedi qualcosa al tuo Raspberry..."):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
+
+    # Risposta del modello
+    with st.chat_message("assistant"):
+        response_placeholder = st.empty()
+        full_response = ""
+        
+        # Chiamata stream a Ollama
+        response = ollama.chat(model='phi3', messages=st.session_state.messages, stream=True)
+        
+        for chunk in response:
+            full_response += chunk['message']['content']
+            response_placeholder.markdown(full_response + "▌")
+        
+        response_placeholder.markdown(full_response)
+    
+    st.session_state.messages.append({"role": "assistant", "content": full_response})

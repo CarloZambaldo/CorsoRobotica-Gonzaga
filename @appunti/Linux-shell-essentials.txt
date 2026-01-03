@@ -1,0 +1,33 @@
+To master the Linux shell, you need to understand how the operating system handles data, permissions, and process execution. The shell (typically Bash or Zsh) is the interface between the user and the Linux kernel.
+
+Navigazione e Gestione File
+
+La base di ogni operazione è sapersi muovere all'interno della struttura ad albero del file system.
+
+    pwd: Mostra il percorso della directory corrente (Print Working Directory).
+
+    ls -la: Elenca i file, inclusi quelli nascosti (-a) con dettagli su permessi e dimensioni (-l).
+
+    cd <path>: Cambia directory. cd .. sale di un livello, cd ~ torna alla cartella home.
+
+    mkdir -p <percorso/nome>: Crea una cartella. L'opzione -p crea anche le cartelle intermedie se mancanti.
+
+    rm -rf <nome>: Rimuove file o directory in modo ricorsivo (-r) e forzato (-f). Attenzione: usalo con cautela
+
+
+
+Flussi di Dati: Reindirizzamento e Pipe
+
+Il concetto fondamentale di Linux è: "Tutto è un file". I dati fluiscono attraverso tre canali standard: stdin (0), stdout (1) e stderr (2).
+
+    Redirection (> e >>): * comando > file.txt: Sovrascrive il file con l'output del comando.
+
+        comando >> file.txt: Appende l'output alla fine del file senza cancellare il contenuto.
+
+    Pipe (|): Invia l'output di un comando come input al comando successivo.
+
+        Esempio: cat file.txt | grep "errore" (Legge il file e cerca solo le righe con la parola "errore").
+
+
+
+
