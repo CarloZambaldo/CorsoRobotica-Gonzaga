@@ -1,1 +1,4 @@
 llm.txt
+.venv
+.env
+setup-corso/
