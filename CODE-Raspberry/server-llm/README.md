@@ -2,7 +2,7 @@
 1.  **Install Python dependencies:**
 
     ```bash
-    pip install streamlit ollama
+    pip install -r requirements.txt
     ```
 
 2.  **Ensure Ollama is running and the model is available:**
