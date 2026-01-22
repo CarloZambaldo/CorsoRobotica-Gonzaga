@@ -74,16 +74,7 @@ CorsoRobotica-Gonzaga
 ### Software
 - Arduino IDE
 - Python ≥ 3.8
-- Librerie Python:
-  ```bash
-  pip install numpy matplotlib scikit-learn
-````
-
-* Per il server Python:
-
-  ```bash
-  pip install flask
-  ```
+- Librerie Python
 
 ---
 
@@ -150,7 +141,7 @@ CODE-Raspberry/server-llm/app.py
 Avvio:
 
 ```bash
-python3 app.py
+streamlit app.py
 ```
 
 Utilizzato per introdurre:
@@ -161,7 +152,7 @@ Utilizzato per introdurre:
 
 ---
 
-## 🧩 Progetto finale
+## 🧩 Progettone finale ARDUINO
 
 Percorso:
 
